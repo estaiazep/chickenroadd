@@ -63,7 +63,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;backgr
 
 /* ====== ЭКРАН ИГРЫ ====== */
 .img-coin{position:absolute; left:50%; bottom:14%; transform:translateX(-50%); width:56%; filter:drop-shadow(0 8px 0 rgba(0,0,0,.25))}
-.img-chicken{position:absolute; left:50%; bottom:26%; transform:translateX(-50%); width:60%; transition:transform .35s ease; filter:drop-shadow(0 6px 0 rgba(0,0,0,.18))}
+.img-chicken{position:absolute; left:50%; bottom:26%; transform:translateX(-50%); width:50%; transition:transform .35s ease; filter:drop-shadow(0 6px 0 rgba(0,0,0,.18))}
 
 .btn-jump{
   position:fixed; bottom:calc(var(--safe) + 56px); left:50%; transform:translateX(-50%);
