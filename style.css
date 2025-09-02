@@ -1,0 +1,103 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--safe:max(env(safe-area-inset-bottom),16px)}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#47413d;color:#fff}
+
+/* ===== Общие заголовки и режимы ===== */
+.title{display:flex;gap:8px;margin:18px auto 10px;justify-content:center;align-items:flex-end;flex-wrap:wrap}
+.t-big{font-size:40px;font-weight:900;letter-spacing:.5px}
+.t-accent{font-size:40px;font-weight:900;color:#ff3b2f}
+.t-num{font-size:44px;font-weight:900;color:#ff3b2f;line-height:1}
+.t-chick{font-size:28px}
+
+.modes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.mode{border:0;padding:10px 16px;border-radius:12px;font-weight:900;color:#fff;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.m-easy{background:#4caf50}.m-medium{background:#3d76d1}.m-hard{background:#e68a1a}.m-hardcore{background:#cf5337}
+.mode.active{outline:3px solid #ffffff88}
+
+/* ===== Дорога (фон) ===== */
+.road{
+  position:relative; width:min(500px,94%); aspect-ratio: 9/13;
+  margin:0 auto; background:#45413e; border-radius:18px; overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);
+}
+.road::before,.road::after{
+  content:""; position:absolute; top:0; bottom:0; width:8px;
+  background:linear-gradient(#e8e6e4 24px, transparent 24px); background-size:8px 40px;
+  opacity:.9; pointer-events:none
+}
+.road::before{left:28px}.road::after{right:28px}
+
+/* Шлагбаум */
+.barrier{
+  position:absolute; left:50%; top:12%; transform:translateX(-50%);
+  width:86%; height:40px; border-radius:10px;
+  background:repeating-linear-gradient(135deg,#f6b10a 0 20px,#3f3b38 20px 40px);
+  box-shadow:inset 0 -8px 0 rgba(0,0,0,.18), 0 6px 0 rgba(0,0,0,.18);
+  pointer-events:none
+}
+.barrier::before,.barrier::after{
+  content:""; position:absolute; top:34px; width:26px; height:26px; background:#b6b3b1; border-radius:6px
+}
+.barrier::before{left:-12px}.barrier::after{right:-12px}
+
+/* ====== ЛОГИН-ЭКРАН: карточка и монета ====== */
+.road--login .auth-card{
+  position:absolute; left:50%; top:28%; transform:translateX(-50%);
+  width:min(420px,86%); background:#2f2b28; border-radius:18px;
+  border:1px solid rgba(0,0,0,.35); padding:18px 16px 16px; text-align:center;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+}
+.auth-card h2{font-size:28px;letter-spacing:.5px;margin-bottom:10px}
+.auth-form{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.auth-input{
+  background:#22201e;border:1px solid #4c4743;color:#fff;padding:12px 14px;border-radius:12px;outline:none;
+}
+.auth-input::placeholder{color:#bfbab6}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:14px;padding:12px 16px;font-weight:900;text-decoration:none}
+.btn-primary{background:#3b6edc;color:#fff;border:0}
+.btn-secondary{background:#9a642c;color:#fff}
+.auth-error{color:#ff8c8c;font-weight:800}
+
+/* Монета на экране логина */
+.login-coin{position:absolute; left:50%; bottom:8%; transform:translateX(-50%); width:46%; filter:drop-shadow(0 10px 0 rgba(0,0,0,.25))}
+
+/* ====== ЭКРАН ИГРЫ ====== */
+.img-coin{position:absolute; left:50%; bottom:14%; transform:translateX(-50%); width:56%; filter:drop-shadow(0 8px 0 rgba(0,0,0,.25))}
+.img-chicken{position:absolute; left:50%; bottom:26%; transform:translateX(-50%); width:60%; transition:transform .35s ease; filter:drop-shadow(0 6px 0 rgba(0,0,0,.18))}
+
+.btn-jump{
+  position:fixed; bottom:calc(var(--safe) + 56px); left:50%; transform:translateX(-50%);
+  background:#3b6edc;color:#fff;border:0;padding:14px 24px;border-radius:16px;font-weight:900;font-size:20px;cursor:pointer;z-index:10;
+}
+.btn-jump:active{transform:translateX(-50%) translateY(2px)}
+
+.btn-tg-fixed{
+  position:fixed; bottom:var(--safe); left:50%; transform:translateX(-50%);
+  background:#229ED9;color:#fff;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;text-decoration:none;font-weight:800;z-index:9;
+}
+.tg-icon{width:20px;height:20px}
+
+/* Модалка */
+.modal{position:fixed; inset:0; background:rgba(0,0,0,.6); display:grid; place-items:center}
+.hidden{display:none}
+.modal-card{background:#272a2f;padding:16px;border-radius:14px;text-align:center;width:min(92vw,360px)}
+.result{margin:12px 0;font-size:18px;font-weight:800}
+.btn-next{border:0;background:#1f8f5a;color:#fff;padding:10px 16px;border-radius:10px;font-weight:800;cursor:pointer}
+
+/* Адаптив: на узких экранах уменьшим заголовок */
+@media (max-width:380px){
+  .t-big,.t-accent{font-size:32px}
+  .t-num{font-size:34px}
+}
+
+/* Убрали монету на окне авторизации */
+.login-coin{display:none !important}
+
+
+/* Row of three actions on the gate */
+.auth-form .btn { width:100%; }
+@media (min-width: 520px){
+  .auth-form .btn { width:auto; }
+  .auth-form { gap:12px; }
+}
+.btn-buy{ background:#b87425; color:#fff; }
